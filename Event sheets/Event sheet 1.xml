@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="HiScore" sid="241985474187714" static="0" type="number">0</variable>
+        <variable constant="0" name="Score" sid="173045867959507" static="0" type="number">0</variable>
+        <variable constant="0" name="ScreenHeight" sid="113058381145792" static="0" type="number">7</variable>
+        <variable constant="1" name="SCREENWIDTH" sid="872452745729228" static="0" type="number">11</variable>
+        <variable constant="0" name="DirectionY" sid="207855047979562" static="0" type="number">0</variable>
+        <variable constant="0" name="DirectionX" sid="758118725809592" static="0" type="number">1</variable>
+        <variable constant="0" name="SegmentsCount" sid="875557606779092" static="0" type="number">8</variable>
+        <variable constant="1" name="LEFTX" sid="692001976837367" static="0" type="number">352</variable>
+        <variable constant="1" name="TOPY" sid="643143114273744" static="0" type="number">160</variable>
+        <variable constant="1" name="CELLSIZE" sid="281402211384908" static="0" type="number">9</variable>
+        <event-block sid="475518101752470">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="299319464017079" type="System" />
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" sid="653359952091299" type="SnakeBlock">
+                    <param id="0" name="Width">CELLSIZE</param>
+                </action>
+                <action id="-6" name="Set height" sid="848613686379067" type="SnakeBlock">
+                    <param id="0" name="Height">CELLSIZE</param>
+                </action>
+                <action id="-6" name="Set height" sid="793665704161108" type="pickup">
+                    <param id="0" name="Height">CELLSIZE</param>
+                </action>
+                <action id="-5" name="Set width" sid="975816688582044" type="pickup">
+                    <param id="0" name="Width">CELLSIZE</param>
+                </action>
+                <action id="-9" name="Destroy" sid="935086158021244" type="SnakeBlock" />
+                <action id="-9" name="Destroy" sid="125687946039763" type="ScreenOverlay" />
+                <action id="0" name="Call function" sid="706400933489417" type="Function">
+                    <param id="0" name="Name">&quot;PlacePickup&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="0" name="Set text" sid="141408859330449" type="HiScoreText">
+                    <param id="0" name="Text">HiScore = 0 ? &quot;&quot; : &quot;HiScore &quot; &amp; HiScore</param>
+                </action>
+                <action disabled="1" id="-20" name="Set layout scale" sid="319049367077729" type="System">
+                    <param id="0" name="Scale">WindowHeight/phone.Height</param>
+                </action>
+                <action id="-9" name="Set value" sid="523184767878125" type="System">
+                    <param id="0" name="Variable">DirectionX</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="250177723554447" type="System">
+                    <param id="0" name="Variable">DirectionY</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="192826621676887">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="743366135437814" type="System">
+                            <param id="0" name="First value">Score</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">HiScore</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="Flash" id="0" name="Flash" sid="317424974609844" type="HiScoreText">
+                            <param id="0" name="&apos;On&apos; time">0.1</param>
+                            <param id="1" name="&apos;Off&apos; time">0.1</param>
+                            <param id="2" name="Duration">1.0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="659648960178694">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Set value" sid="529382552717138" type="System">
+                            <param id="0" name="Variable">HiScore</param>
+                            <param id="1" name="Value">max(Score,HiScore)</param>
+                        </action>
+                        <action id="0" name="Set text" sid="590241803508326" type="HiScoreText">
+                            <param id="0" name="Text">HiScore = 0 ? &quot;&quot; : &quot;HiScore &quot; &amp; HiScore</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="751045391856557" type="System">
+                            <param id="0" name="Variable">Score</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="0" name="Set text" sid="972786831268784" type="ScoreText">
+                            <param id="0" name="Text">&quot;Score &quot; &amp; Score</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="805589485821401">
+                    <conditions>
+                        <condition id="-10" name="For" sid="430685404338903" type="System">
+                            <param id="0" name="Name">&quot;SegmentIndex&quot;</param>
+                            <param id="1" name="Start index">0</param>
+                            <param id="2" name="End index">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="749820258054851" type="System">
+                            <param id="0" name="Object to create">SnakeBlock</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="X">(5-loopindex)*CELLSIZE+LEFTX</param>
+                            <param id="3" name="Y">1*CELLSIZE+TOPY</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="873392789050495" type="SnakeBlock">
+                            <param id="0" name="Instance variable">SegmentIndex</param>
+                            <param id="1" name="Value">loopindex</param>
+                        </action>
+                        <action id="5" name="Push" sid="751754796851062" type="SnakeSegments">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Value">snakeblock.UID</param>
+                            <param id="2" name="Axis">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="530517477288401">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="861327918096789" type="System">
+                    <param id="0" name="Interval (seconds)">0.3</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="351224249216229">
+                    <conditions>
+                        <condition id="-10" name="For" sid="620242715057830" type="System">
+                            <param id="0" name="Name">&quot;AllTailSegments&quot;</param>
+                            <param id="1" name="Start index">SnakeBlock.Count-1</param>
+                            <param id="2" name="End index">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="392286731027344">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="359810487436586" type="System">
+                                    <param id="0" name="Object">SnakeBlock</param>
+                                    <param id="1" name="Instance">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="109376102076309" type="Function">
+                                    <param id="0" name="Name">&quot;getSegmentXAt&quot;</param>
+                                    <param id="1" name="Parameter {n}">loopindex-1</param>
+                                </action>
+                                <action id="-1" name="Set X" sid="801496657274225" type="SnakeBlock">
+                                    <param id="0" name="X">Function.ReturnValue</param>
+                                </action>
+                                <action id="0" name="Call function" sid="511297228753178" type="Function">
+                                    <param id="0" name="Name">&quot;getSegmentYAt&quot;</param>
+                                    <param id="1" name="Parameter {n}">loopindex-1</param>
+                                </action>
+                                <action id="-2" name="Set Y" sid="638555502713077" type="SnakeBlock">
+                                    <param id="0" name="Y">Function.ReturnValue</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="500721007997019">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="383441038082061" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="774243500986588" type="SnakeBlock">
+                            <param id="0" name="X">snakeblock.X+CELLSIZE*DirectionX</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="114916386243008" type="SnakeBlock">
+                            <param id="0" name="Y">snakeblock.Y+CELLSIZE*DirectionY</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="947049075747464">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="366537623503744" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block any="1" sid="560002832155074">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="182934692966688" type="SnakeBlock">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="X co-ordinate">LEFTX</param>
+                                </condition>
+                                <condition id="-1" name="Compare X" sid="471291713396747" type="SnakeBlock">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="X co-ordinate">LEFTX+SCREENWIDTH*CELLSIZE</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="553125744503030" type="SnakeBlock">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Y co-ordinate">TOPY</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="758402262805053" type="SnakeBlock">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="Y co-ordinate">TOPY+SCREENheight*CELLSIZE</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="316093251416530" type="Function">
+                                    <param id="0" name="Name">&quot;GameOver&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block disabled="1" sid="841451955180545">
+                            <conditions>
+                                <condition id="1" name="Is overlapping another object" sid="717900505339742" type="SnakeBlock">
+                                    <param id="0" name="Object">SnakeBlock</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="589422816984773" type="Function">
+                                    <param id="0" name="Name">&quot;GameOver&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block disabled="1" sid="580403144966394">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="132104425939716" type="SnakeBlock">
+                                            <param id="0" name="Instance variable">SegmentIndex</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block disabled="1" sid="341989779878236">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="894083167447882" type="SnakeBlock">
+                            <param id="0" name="Object">SnakeBlock</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block disabled="1" sid="577297110950777">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="152893266418466" type="SnakeBlock">
+                                    <param id="0" name="Instance variable">SegmentIndex</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="457171742052918" type="Function">
+                                    <param id="0" name="Name">&quot;GameOver&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="750003508381707">
+                    <conditions>
+                        <condition id="-10" name="For" sid="622426424001082" type="System">
+                            <param id="0" name="Name">&quot;&quot;</param>
+                            <param id="1" name="Start index">1</param>
+                            <param id="2" name="End index">SnakeBlock.Count-1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="302964413207783">
+                            <conditions>
+                                <condition id="-13" name="Pick nth instance" sid="359581517314030" type="System">
+                                    <param id="0" name="Object">SnakeBlock</param>
+                                    <param id="1" name="Instance">loopindex</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="220608692531272" type="Function">
+                                    <param id="0" name="Name">&quot;IsHeadAtXY&quot;</param>
+                                    <param id="1" name="Parameter {n}">SnakeBlock.X{###}SnakeBlock.Y</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="771043199659299">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="399474261587272" type="System">
+                                            <param id="0" name="First value">Function.ReturnValue</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="629210575154654" type="Function">
+                                            <param id="0" name="Name">&quot;GameOver&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block disabled="1" sid="642795121793171">
+            <conditions>
+                <condition id="0" name="On function" sid="100056392839343" type="Function">
+                    <param id="0" name="Name">&quot;getSegmentXAt&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block disabled="1" sid="616375746276639">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="373142558052620" type="System">
+                            <param id="0" name="Object">SnakeSegments</param>
+                            <param id="1" name="Instance">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block disabled="1" sid="224469105312138">
+                            <conditions>
+                                <condition id="-33" name="Pick by comparison" sid="357139979316345" type="System">
+                                    <param id="0" name="Object">SnakeBlock</param>
+                                    <param id="1" name="Expression">snakeblock.UID</param>
+                                    <param id="2" name="Comparison">0</param>
+                                    <param id="3" name="Value">SnakeSegments.CurValue</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="214167708019046" type="Function">
+                                    <param id="0" name="Value">snakeblock.X</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="379137858665715">
+            <conditions>
+                <condition id="0" name="On function" sid="403177445859395" type="Function">
+                    <param id="0" name="Name">&quot;getSegmentXAt&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="103275715706024">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="933162896091759" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set return value" sid="213299085887814" type="Function">
+                            <param id="0" name="Value">SnakeBlock.X</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="950609274012123">
+            <conditions>
+                <condition id="0" name="On function" sid="329706121872927" type="Function">
+                    <param id="0" name="Name">&quot;getSegmentYAt&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="760448267395020">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="417318932425604" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set return value" sid="120257239878987" type="Function">
+                            <param id="0" name="Value">SnakeBlock.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="950088743515856">
+            <conditions>
+                <condition id="3" name="On touched object" sid="692240166181473" type="Touch">
+                    <param id="0" name="Object">LeftButton</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="577743781277835" type="Keyboard">
+                    <param id="0" name="Key">37 (Left arrow)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="302239800089290">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="704808649343842" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="480456679726979" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="587692410297849" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="7" name="Play (by name)" sid="350087525822587" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;arrow&quot;</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">0</param>
+                            <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="885784611190910">
+            <conditions>
+                <condition id="3" name="On touched object" sid="846643235536367" type="Touch">
+                    <param id="0" name="Object">RightButton</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="199588978381375" type="Keyboard">
+                    <param id="0" name="Key">39 (Right arrow)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="297480610907063">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="450505639277315" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="920320579338843" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="901858425756511" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="7" name="Play (by name)" sid="533148818140916" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;arrow&quot;</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">0</param>
+                            <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="861971078114631">
+            <conditions>
+                <condition id="3" name="On touched object" sid="121277105808548" type="Touch">
+                    <param id="0" name="Object">DownButton</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="538264526805454" type="Keyboard">
+                    <param id="0" name="Key">40 (Down arrow)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="275659704660339">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="540362294281469" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="243263304926685" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="958983078818472" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="7" name="Play (by name)" sid="882793168570518" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;arrow&quot;</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">0</param>
+                            <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="994032155807341">
+            <conditions>
+                <condition id="3" name="On touched object" sid="524990303990705" type="Touch">
+                    <param id="0" name="Object">UpButton</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="700610354834928" type="Keyboard">
+                    <param id="0" name="Key">38 (Up arrow)</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="287645595476785">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="145874815789929" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="215131812000371" type="System">
+                            <param id="0" name="Variable">DirectionX</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="539575569026685" type="System">
+                            <param id="0" name="Variable">DirectionY</param>
+                            <param id="1" name="Value">-1</param>
+                        </action>
+                        <action id="7" name="Play (by name)" sid="797725646961106" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;arrow&quot;</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">0</param>
+                            <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="326533888191090">
+            <conditions>
+                <condition id="0" name="On function" sid="992773339078880" type="Function">
+                    <param id="0" name="Name">&quot;PlacePickup&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="889725110607847" type="pickup">
+                    <param id="0" name="X">LEFTX+CELLSIZE*floor(random(0,SCREENWIDTH))</param>
+                </action>
+                <action id="-2" name="Set Y" sid="868301504593784" type="pickup">
+                    <param id="0" name="Y">TOPY+CELLSIZE*floor(random(0,ScreenHeight))</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="968288956608259">
+                    <conditions>
+                        <condition id="-23" name="While" sid="650607754342673" type="System" />
+                        <condition id="9" name="Is overlapping at offset" sid="352810443667463" type="SnakeBlock">
+                            <param id="0" name="Object">pickup</param>
+                            <param id="1" name="Offset X">pickup.Width/2</param>
+                            <param id="2" name="Offset Y">pickup.Height/2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="178669287850334" type="pickup">
+                            <param id="0" name="X">LEFTX+CELLSIZE*floor(random(0,SCREENWIDTH))</param>
+                        </action>
+                        <action id="-2" name="Set Y" sid="287731671077839" type="pickup">
+                            <param id="0" name="Y">TOPY+CELLSIZE*floor(random(0,ScreenHeight))</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="143779935756047">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="899121463104878" type="SnakeBlock">
+                    <param id="0" name="Object">pickup</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="574166484300017" type="Function">
+                    <param id="0" name="Name">&quot;PlacePickup&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-3" name="Create object" sid="589609476251255" type="System">
+                    <param id="0" name="Object to create">SnakeBlock</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="0" name="Call function" sid="290244702293578" type="Function">
+                    <param id="0" name="Name">&quot;GetLastSegmentX&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-1" name="Set X" sid="647827663179803" type="SnakeBlock">
+                    <param id="0" name="X">Function.ReturnValue</param>
+                </action>
+                <action id="0" name="Call function" sid="153553805212634" type="Function">
+                    <param id="0" name="Name">&quot;GetLastSegmentY&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+                <action id="-2" name="Set Y" sid="458872661343637" type="SnakeBlock">
+                    <param id="0" name="Y">Function.ReturnValue</param>
+                </action>
+                <action id="-10" name="Add to" sid="280825088717996" type="System">
+                    <param id="0" name="Variable">Score</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+                <action id="0" name="Set text" sid="317815776192594" type="ScoreText">
+                    <param id="0" name="Text">&quot;Score &quot; &amp; Score</param>
+                </action>
+                <action id="-10" name="Set value" sid="805274471435234" type="SnakeBlock">
+                    <param id="0" name="Instance variable">SegmentIndex</param>
+                    <param id="1" name="Value">SnakeBlock.Count-1</param>
+                </action>
+                <action id="7" name="Play (by name)" sid="647400667284938" type="Audio">
+                    <param id="0" name="Folder">0</param>
+                    <param id="1" name="Audio file name">&quot;pickup&quot;</param>
+                    <param id="3" name="Loop">0</param>
+                    <param id="4" name="Volume">0</param>
+                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="171237476439265">
+            <conditions>
+                <condition id="0" name="On function" sid="267441152110997" type="Function">
+                    <param id="0" name="Name">&quot;GetLastSegmentX&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="321285804917641">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="627455762927330" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">SnakeBlock.Count-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set return value" sid="401651849267869" type="Function">
+                            <param id="0" name="Value">SnakeBlock.X</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="535587764456724">
+            <conditions>
+                <condition id="0" name="On function" sid="602043379611407" type="Function">
+                    <param id="0" name="Name">&quot;GetLastSegmentY&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="364263099355854">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="577598409569889" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">SnakeBlock.Count-1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set return value" sid="951355813662147" type="Function">
+                            <param id="0" name="Value">SnakeBlock.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="262832600126569">
+            <conditions>
+                <condition id="0" name="On function" sid="844834221317558" type="Function">
+                    <param id="0" name="Name">&quot;GameOver&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="590494853666004" type="System" />
+                <action disabled="1" id="0" name="Set text" sid="651331509775031" type="ScoreText">
+                    <param id="0" name="Text">&quot;Gameover&quot;</param>
+                </action>
+                <action id="7" name="Play (by name)" sid="896800528409827" type="Audio">
+                    <param id="0" name="Folder">0</param>
+                    <param id="1" name="Audio file name">&quot;die&quot;</param>
+                    <param id="3" name="Loop">0</param>
+                    <param id="4" name="Volume">0</param>
+                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="614005901232129">
+            <conditions>
+                <condition id="0" name="On function" sid="378356363458982" type="Function">
+                    <param id="0" name="Name">&quot;IsHeadAtXY&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="827536046229729">
+                    <conditions>
+                        <condition id="-13" name="Pick nth instance" sid="705380799473385" type="System">
+                            <param id="0" name="Object">SnakeBlock</param>
+                            <param id="1" name="Instance">0</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="490859866779489">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="798088342184899" type="SnakeBlock">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="X co-ordinate">Function.Param(0)</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="561807612547010" type="SnakeBlock">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Y co-ordinate">Function.Param(1)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="538336860869238" type="Function">
+                                    <param id="0" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="431269108914016">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="138991125409686" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="987534327987239" type="Function">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
