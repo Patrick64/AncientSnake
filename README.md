@@ -1,5 +1,7 @@
 # Ancient Snake
 
+A retro snake game complete with Nokia phone and annoying sounds.
+
 By Patrick Woodcock <a href="https://twitter.com/JimmyNoShoes">@JimmyNoShoes</a>
 
 Game for Ludum Dare Game jam Aug 2016. Theme: Ancient Technology
