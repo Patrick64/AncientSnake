@@ -1,4 +1,4 @@
-# AncientSnake
+# Ancient Snake
 
 By Patrick Woodcock <a href="https://twitter.com/JimmyNoShoes">@JimmyNoShoes</a>
 
